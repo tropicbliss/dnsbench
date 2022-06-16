@@ -73,7 +73,10 @@ fn main() -> Result<()> {
     let total_time_taken = start_time.elapsed();
     progress_bar.finish_and_clear();
     term.clear_last_lines(2)?;
-    term.write_line(&format!("Total time taken: {:?}", total_time_taken))?;
+    term.write_line(&format!(
+        "Total time taken: {:.2}s",
+        total_time_taken.as_secs_f32()
+    ))?;
     let mut dns_results = Vec::with_capacity(dns_servers.len());
     for dns_server in &dns_servers {
         let filter_by_dns = results.iter().filter(|r| r.dns_server == dns_server);
