@@ -84,7 +84,7 @@ fn main() -> Result<()> {
             .clone()
             .filter(|r| r.result == ResultState::Failed)
             .count();
-        let mut hist = Histogram::<u64>::new(2).unwrap();
+        let mut hist = Histogram::<u64>::new_with_bounds(0, u64::max_value(), 3).unwrap();
         for res in filter_by_dns {
             if let ResultState::Success(duration) = res.result {
                 hist.record(duration.as_millis().try_into()?)?;
