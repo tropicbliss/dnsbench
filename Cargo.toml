@@ -5,6 +5,8 @@ edition = "2021"
 authors = ["tropicbliss <tropicbliss@protonmail.com>"]
 license = "MIT"
 description = "Simple program to benchmark DNS servers"
+homepage = "https://github.com/tropicbliss/dnsbench"
+repository = "https://github.com/tropicbliss/dnsbench"
 
 [dependencies]
 anyhow = "1.0.57"
