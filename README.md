@@ -29,7 +29,7 @@ USAGE:
     dnsbench.exe [OPTIONS] --domain-name <DOMAIN_NAME> --file <FILE>
 
 OPTIONS:
-    -a, --attempts <ATTEMPTS>          Number of attempts [default: 10]
+    -a, --attempts <ATTEMPTS>          Number of requests to run for each DNS server [default: 10]
     -d, --domain-name <DOMAIN_NAME>    Dummy domain name to lookup
     -f, --file <FILE>                  File containing newline delimited DNS addresses to measure
     -h, --help                         Print help information

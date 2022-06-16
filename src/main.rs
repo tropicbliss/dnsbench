@@ -24,7 +24,7 @@ struct Args {
     #[clap(short, long)]
     domain_name: Name,
 
-    /// Number of attempts
+    /// Number of requests to run for each DNS server
     #[clap(short, long, default_value = "10")]
     attempts: NonZeroUsize,
 
