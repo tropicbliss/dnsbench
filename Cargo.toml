@@ -1,6 +1,6 @@
 [package]
 name = "dnsbench"
-version = "1.0.4"
+version = "1.0.5"
 edition = "2021"
 authors = ["tropicbliss <tropicbliss@protonmail.com>"]
 license = "MIT"
