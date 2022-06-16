@@ -1,0 +1,17 @@
+[package]
+name = "dnsbench"
+version = "0.1.0"
+edition = "2021"
+authors = ["tropicbliss <tropicbliss@protonmail.com>"]
+license = "MIT"
+description = "Simple program to benchmark DNS servers"
+
+[dependencies]
+anyhow = "1.0.57"
+clap = { version = "3.2.4", features = ["derive"] }
+cli-table = "0.4.7"
+console = "0.15.0"
+hdrhistogram = "7.5.0"
+indicatif = "0.16.2"
+rand = "0.8.5"
+trust-dns-client = "0.21.2"
