@@ -48,7 +48,7 @@ Before running this program, you must create a file that contains the IP address
 
 ### Example
 
-- Passing the path of the IP address text file (`ip.txt`) as a command line argument and using `www.wikipedia.org` as a dummy domain name to test against.
+- Passing the path of the IP address text file (`ip.txt`) as a command line argument and using `www.wikipedia.org` as a dummy domain to test against.
 
 ```sh
 ./dnsbench -d www.wikipedia.org -f ip.txt
