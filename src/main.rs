@@ -14,7 +14,7 @@ use std::{
     time::{Duration, Instant},
 };
 use trust_dns_client::rr::Name;
-use utils::{parse_dns_addrs, resolve, DnsError};
+use utils::{parse_dns_addrs, resolve};
 
 /// Simple program to benchmark DNS servers
 #[derive(Parser, Debug)]
@@ -62,10 +62,7 @@ fn main() -> Result<()> {
             let ended = Instant::now();
             let result = match elapsed {
                 Ok(d) => ResultState::Success(d),
-                Err(e) => match e.downcast_ref::<DnsError>() {
-                    Some(DnsError::DNSError) => ResultState::Failed,
-                    None => return Err(e),
-                },
+                Err(_) => ResultState::Failed,
             };
             let result = BenchResult { dns_server, result };
             last_start_times.insert(dns_server, ended);

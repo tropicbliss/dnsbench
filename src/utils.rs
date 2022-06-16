@@ -1,4 +1,4 @@
-use anyhow::{Context, Result};
+use anyhow::Result;
 use std::{
     fs::File,
     io::{BufRead, BufReader},
@@ -26,26 +26,18 @@ pub fn resolve(domain_name: Name, dns_server: IpAddr) -> Result<Duration> {
     let mut encoder = BinEncoder::new(&mut request_as_bytes);
     msg.emit(&mut encoder)?;
     let start = Instant::now();
-    let localhost = UdpSocket::bind("0.0.0.0:0").map_err(|_| DnsError::DNSError)?;
+    let localhost = UdpSocket::bind("0.0.0.0:0")?;
     let timeout = Duration::from_secs(3);
-    localhost
-        .set_read_timeout(Some(timeout))
-        .map_err(|_| DnsError::DNSError)?;
+    localhost.set_read_timeout(Some(timeout))?;
     localhost.set_nonblocking(false)?;
-    localhost
-        .send_to(&request_as_bytes, dns_server)
-        .map_err(|_| DnsError::DNSError)?;
-    localhost
-        .recv_from(&mut response_as_bytes)
-        .map_err(|_| DnsError::DNSError)?;
+    localhost.send_to(&request_as_bytes, dns_server)?;
+    localhost.recv_from(&mut response_as_bytes)?;
     let elapsed = start.elapsed();
-    let dns_message = Message::from_vec(&response_as_bytes).context("unable to parse response")?;
+    let dns_message = Message::from_vec(&response_as_bytes)?;
     for answer in dns_message.answers() {
         if answer.record_type() == RecordType::A {
             let resource = answer.data().unwrap();
-            resource
-                .to_ip_addr()
-                .context("invalid IP address received")?;
+            resource.to_ip_addr().unwrap();
         }
     }
     Ok(elapsed)
@@ -61,16 +53,3 @@ pub fn parse_dns_addrs<T: AsRef<Path>>(path: T) -> Result<Vec<IpAddr>> {
     }
     Ok(result)
 }
-
-#[derive(Debug)]
-pub enum DnsError {
-    DNSError,
-}
-
-impl std::fmt::Display for DnsError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{:#?}", self)
-    }
-}
-
-impl std::error::Error for DnsError {}
