@@ -38,7 +38,7 @@ OPTIONS:
     -V, --version                      Print version information
 ```
 
-Before running this program, you must create a file that contains the IP addresses of the DNS servers you want to benchmark. Each IP address should be on a separate line.
+Before running this program, you must create a file that contains the IP addresses of the DNS servers you want to benchmark. Each IP address should be on a separate line. A sample file (`dns.txt`) has been provided to you in the root of this repository.
 
 ```
 # ip.txt
