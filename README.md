@@ -12,7 +12,7 @@ cd dnsbench
 cargo build --release
 ```
 
-Compiling from source requires the latest stable version of Rust. Older Rust versions may be able to compile `buckshot`, but they are not guaranteed to keep working.
+Compiling from source requires the latest stable version of Rust. Older Rust versions may be able to compile `dnsbench`, but they are not guaranteed to keep working.
 
 The binary will be located in `target/release`.
 
